@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f752272ee37822143acdfd9af1ef8eb0
+guid: ecd671808b55c604a967a65bbbd8b744
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,8 +7,26 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: maze_1
+    second: {fileID: -8882078698429273371, guid: 7f373689bf328f74aa0d89effeb4d2dc,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: maze_2
     second: {fileID: -2658138782222293545, guid: 5e0de676f35aa6340b844458a5903641,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_3
+    second: {fileID: -722570197450297985, guid: 801a8fc9ae3e7784f9416bda9c68b2e9,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: polarityIDAnim
+    second: {fileID: 4545222889796217561, guid: bfe07cf8d3804254f8eefb177484623b,
       type: 3}
   materials:
     materialImportMode: 1

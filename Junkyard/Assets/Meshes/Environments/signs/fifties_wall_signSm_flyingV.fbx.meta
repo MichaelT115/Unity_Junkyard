@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: maze_2
-    second: {fileID: 8082785376708046079, guid: 493e8b2ba48b6a244b7bbd7d0d428ac0,
+    second: {fileID: -2658138782222293545, guid: 5e0de676f35aa6340b844458a5903641,
       type: 3}
   - first:
       type: UnityEngine:Material

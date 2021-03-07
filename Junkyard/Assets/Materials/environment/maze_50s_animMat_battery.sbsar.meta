@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6678c9d475282f14487dbc0a9deae085
+guid: 04d53807068709c44ac7caa51b01c2c8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,25 +11,26 @@ ScriptedImporter:
   version: 29
   projectContext: 0
   mGraphInstanceData:
-  - graphLabel: wijitLight
-    prototypeName: wijitLight
+  - graphLabel: maze_50s_animMat_battery
+    prototypeName: maze_50s_animMat_battery
     graphDescIndex: 0
     generateAllOutputs: 0
     generateMipMaps: 1
-    preset: " <sbspreset pkgurl=\"pkg://wijitLight\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"2033050762\" type=\"8\" value=\"9,9\" />\n
-      </sbspreset>\n"
+    preset: " <sbspreset pkgurl=\"pkg://maze_50s_animMat_battery\" label=\"\" >\n 
+      <presetinput identifier=\"$outputsize\" uid=\"1780436089\" type=\"8\" value=\"9,9\"
+      />\n  <presetinput identifier=\"polarity\" uid=\"53011895\" type=\"4\" value=\"1\"
+      />\n </sbspreset>\n"
     shaderName: Standard
     materialProperties:
       shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      shaderKeywords: _EMISSION _MAINTEX _METALLICGLOSSMAP _NORMALMAP
+      shaderKeywords: _EMISSION _MAINTEX _NORMALMAP
       lightmapFlags: 1
       enableInstancingVariants: 0
       doubleSidedGI: 0
       customRenderQueue: -1
       texEnvs:
       - name: _BumpMap
-        texture: {fileID: 1290684888363220254, guid: 6678c9d475282f14487dbc0a9deae085,
+        texture: {fileID: -121413481567536821, guid: 04d53807068709c44ac7caa51b01c2c8,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
@@ -46,18 +47,17 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _EmissionMap
-        texture: {fileID: -3553046243741375432, guid: 6678c9d475282f14487dbc0a9deae085,
+        texture: {fileID: 3662424402944079243, guid: 04d53807068709c44ac7caa51b01c2c8,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MainTex
-        texture: {fileID: -5282740688720255551, guid: 6678c9d475282f14487dbc0a9deae085,
+        texture: {fileID: -8583933966648338557, guid: 04d53807068709c44ac7caa51b01c2c8,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MetallicGlossMap
-        texture: {fileID: 6970857053207514019, guid: 6678c9d475282f14487dbc0a9deae085,
-          type: 3}
+        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _OcclusionMap
@@ -107,8 +107,17 @@ ScriptedImporter:
       - name: _EmissionColor
         color: {r: 1, g: 1, b: 1, a: 1}
     outputDescList:
+    - outputName: emissive
+      identifier: emissive
+      usageName: emissive
+      channelStr: emissive
+      label: Emissive
+      usage: 3
+      bImage: 1
+      bNumerical: 0
+      bLinear: 0
     - outputName: baseColor
-      identifier: basecolor
+      identifier: baseColor
       usageName: baseColor
       channelStr: baseColor
       label: Base Color
@@ -134,25 +143,12 @@ ScriptedImporter:
       bImage: 1
       bNumerical: 0
       bLinear: 1
-    - outputName: metallic
-      identifier: metallic
-      usageName: metallic
-      channelStr: metallic
-      label: Metallic
-      usage: 34
-      bImage: 1
-      bNumerical: 0
-      bLinear: 1
-    - outputName: emissive
-      identifier: emissive
-      usageName: emissive
-      channelStr: emissive
-      label: emissive
-      usage: 3
-      bImage: 1
-      bNumerical: 0
-      bLinear: 0
     texturePackingList:
+    - targetName: emissive
+      components:
+      - sourceName: emissive
+        from: 0
+        to: 3
     - targetName: baseColor
       components:
       - sourceName: baseColor
@@ -168,34 +164,20 @@ ScriptedImporter:
       - sourceName: roughness
         from: 0
         to: 3
-    - targetName: metallic
-      components:
-      - sourceName: smoothness
-        from: 0
-        to: 3
-    - targetName: emissive
-      components:
-      - sourceName: emissive
-        from: 0
-        to: 3
     textureParameters:
-    - textureName: wijitLight - baseColor
+    - textureName: maze_50s_animMat_battery - emissive
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: wijitLight - normal
+    - textureName: maze_50s_animMat_battery - baseColor
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: wijitLight - roughness
+    - textureName: maze_50s_animMat_battery - normal
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: wijitLight - metallic
-      wrapMode: 0
-      filterMode: 1
-      aniso: 1
-    - textureName: wijitLight - emissive
+    - textureName: maze_50s_animMat_battery - roughness
       wrapMode: 0
       filterMode: 1
       aniso: 1
@@ -210,10 +192,9 @@ ScriptedImporter:
       textureFormatMode: 0
       normalCompressed: 0
       bGenerateOnLoad: 1
-    material: {fileID: -5566244545082697485, guid: 6678c9d475282f14487dbc0a9deae085,
+    material: {fileID: 4140632566074607473, guid: 04d53807068709c44ac7caa51b01c2c8,
       type: 3}
     generatedTextures:
-    - {fileID: -5282740688720255551, guid: 6678c9d475282f14487dbc0a9deae085, type: 3}
-    - {fileID: 1290684888363220254, guid: 6678c9d475282f14487dbc0a9deae085, type: 3}
-    - {fileID: 6970857053207514019, guid: 6678c9d475282f14487dbc0a9deae085, type: 3}
-    - {fileID: -3553046243741375432, guid: 6678c9d475282f14487dbc0a9deae085, type: 3}
+    - {fileID: 3662424402944079243, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
+    - {fileID: -8583933966648338557, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
+    - {fileID: -121413481567536821, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}

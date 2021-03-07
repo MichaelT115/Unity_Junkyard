@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f752272ee37822143acdfd9af1ef8eb0
+guid: 1973c9a9d8da40943a520ea22911264e
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,8 +7,26 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: battAnim
+    second: {fileID: 4140632566074607473, guid: 04d53807068709c44ac7caa51b01c2c8,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_1
+    second: {fileID: -8882078698429273371, guid: 7f373689bf328f74aa0d89effeb4d2dc,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: maze_2
     second: {fileID: -2658138782222293545, guid: 5e0de676f35aa6340b844458a5903641,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: maze_3
+    second: {fileID: -722570197450297985, guid: 801a8fc9ae3e7784f9416bda9c68b2e9,
       type: 3}
   materials:
     materialImportMode: 1
