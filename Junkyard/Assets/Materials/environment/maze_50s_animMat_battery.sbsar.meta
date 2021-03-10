@@ -14,7 +14,7 @@ ScriptedImporter:
   - graphLabel: maze_50s_animMat_battery
     prototypeName: maze_50s_animMat_battery
     graphDescIndex: 0
-    generateAllOutputs: 0
+    generateAllOutputs: 1
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://maze_50s_animMat_battery\" label=\"\" >\n 
       <presetinput identifier=\"$outputsize\" uid=\"1780436089\" type=\"8\" value=\"9,9\"
@@ -23,9 +23,9 @@ ScriptedImporter:
     shaderName: Standard
     materialProperties:
       shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      shaderKeywords: _EMISSION _MAINTEX _NORMALMAP
+      shaderKeywords: _EMISSION _MAINTEX _NORMALMAP _ROUGHNESSMAP
       lightmapFlags: 1
-      enableInstancingVariants: 0
+      enableInstancingVariants: 1
       doubleSidedGI: 0
       customRenderQueue: -1
       texEnvs:
@@ -198,3 +198,4 @@ ScriptedImporter:
     - {fileID: 3662424402944079243, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
     - {fileID: -8583933966648338557, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
     - {fileID: -121413481567536821, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
+    - {fileID: 6094757191351486518, guid: 04d53807068709c44ac7caa51b01c2c8, type: 3}
