@@ -50,4 +50,9 @@ public sealed class BatteryComponent : MonoBehaviour
 		isZero = Battery.Power == 0;
 		isMax = Battery.MaxPower <= Battery.Power;
 	}
+
+	public void Drain(float power)
+	{
+		batteryHandler.Drain(power);
+	}
 }
