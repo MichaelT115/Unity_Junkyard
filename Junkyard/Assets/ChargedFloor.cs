@@ -17,7 +17,7 @@ public sealed class ChargedFloor : MonoBehaviour
 	{
 		for (int i = 0; i < batteryComponents.Count; ++i)
 		{
-			batteryComponents[i].BatteryHandler.Charge(charge * Time.fixedDeltaTime, polarity);
+			batteryComponents[i].BatteryHandler.Charge(charge * Time.fixedDeltaTime);
 		}
 	}
 

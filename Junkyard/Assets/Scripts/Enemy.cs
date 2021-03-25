@@ -9,12 +9,19 @@ public class Enemy : MonoBehaviour
 	private void Awake()
 	{
 		HealthComponent = GetComponent<HealthComponent>();
+		BatteryComponent = GetComponent<BatteryComponent>();
 		rigidbody = GetComponent<Rigidbody>();
 		isDead = false;
 	}
 
 	private void Update()
 	{
+		if (BatteryComponent.IsOverchraged)
+		{
+			HealthComponent.Damage(5);
+			//BatteryComponent.ClampAtMax();
+		}
+
 		if (HealthComponent.IsZeroOrBelow)
 		{
 			Kill();
@@ -31,5 +38,6 @@ public class Enemy : MonoBehaviour
 	}
 
 	public HealthComponent HealthComponent { get; private set; }
+	public BatteryComponent BatteryComponent { get; private set; }
 	public bool IsDead => isDead;
 }

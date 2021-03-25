@@ -1,17 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using Weapons;
 
 [Serializable]
 public class WeaponHandler
 {
-	private Weapon weapon;
+	private IWeapon weapon;
 	[SerializeField]
 	private Inventory inventory;
 	private BatteryHandler batteryHandler;
 	[SerializeField]
 	private Transform weaponTransform;
 
-	public void Equip(Weapon weapon)
+	public void Equip(IWeapon weapon)
 	{
 		this.weapon = weapon;
 		this.weapon.Equip(this);

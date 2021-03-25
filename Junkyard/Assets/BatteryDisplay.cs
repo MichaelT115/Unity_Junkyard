@@ -9,16 +9,16 @@ public sealed class BatteryDisplay : MonoBehaviour
 	private TMP_Text text;
 	private Transform cameraTransform;
 
-	public void Start()
+	private void Start()
 	{
 		cameraTransform = Camera.main.transform;
 	}
 
-	public void Update()
+	private void Update()
 	{
 		DisplayBatteryPower(batteryComponent.Battery);
 		transform.forward = transform.position - cameraTransform.position;
 	}
 
-	private void DisplayBatteryPower(Battery battery) => text.text = $"{battery.Power:0.00}%";
+	private void DisplayBatteryPower(Battery battery) => text.text = $"{battery.Power / battery.MaxPower * 100:0.0}%";
 }

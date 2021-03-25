@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f3b3b2398458e4093db945923f979b, type: 3}
+  m_Name: Weapon_SingleShotBeam
+  m_EditorClassIdentifier: 
+  weapon:
+    lineRendererPrefab: {fileID: 3192867924108436658, guid: c975c50d97e2ecb4482dd15b7a9f5df8,
+      type: 3}
+    impactEffectPrefab: {fileID: 4576516608443189829, guid: 2f990da255d2e384c9a46c003201f1c7,
+      type: 3}
+    fireEffectPrefab: {fileID: 807433649432821179, guid: 4305dabe4a3dfb7439914e4dfa10996e,
+      type: 3}

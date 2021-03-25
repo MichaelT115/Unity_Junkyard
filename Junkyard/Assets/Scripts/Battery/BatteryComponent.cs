@@ -14,6 +14,7 @@ public sealed class BatteryComponent : MonoBehaviour
 	public bool HasDrainedThisFrame => hasDrainedThisFrame;
 	public bool IsZero => isZero;
 	public bool IsMax => isMax;
+	public bool IsOverchraged => isOvercharged;
 
 	[SerializeField]
 	private bool hasChargedThisFrame;
@@ -23,6 +24,8 @@ public sealed class BatteryComponent : MonoBehaviour
 	private bool isZero;
 	[SerializeField]
 	private bool isMax;
+	[SerializeField]
+	private bool isOvercharged;
 
 	private void Update()
 	{
@@ -34,25 +37,14 @@ public sealed class BatteryComponent : MonoBehaviour
 		hasChargedThisFrame = Battery.Power > batteryPrevious.Power;
 		hasDrainedThisFrame = Battery.Power < batteryPrevious.Power;
 
-		if (Battery.Power > Battery.MaxPower)
-		{
-			batteryHandler.SetBattery(new Battery(Battery.MaxPower, Battery.MaxPower));
-		}
-
-		if (Battery.Power < 0)
-		{
-			batteryHandler.SetBattery(new Battery(0, Battery.MaxPower));
-		}
-
 		batteryPrevious = Battery;
 
-
-		isZero = Battery.Power == 0;
+		isZero = Battery.Power <= 0;
 		isMax = Battery.MaxPower <= Battery.Power;
+		isOvercharged = Battery.MaxPower < Battery.Power;
 	}
 
-	public void Drain(float power)
-	{
-		batteryHandler.Drain(power);
-	}
+	public void Charge(float power) => batteryHandler.Charge(power);
+	public void Drain(float power) => batteryHandler.Drain(power);
+	public void ClampAtMax() => batteryHandler.ClampAtMax();
 }

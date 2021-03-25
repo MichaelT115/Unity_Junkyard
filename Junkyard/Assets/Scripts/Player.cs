@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Weapons;
 
 public sealed class Player : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public sealed class Player : MonoBehaviour
 	private BatteryComponent batteryComponent;
 	private HealthComponent healthComponent;
 	[SerializeField]
-	private Weapon weapon;
+	private WeaponData weaponData;
 	[SerializeField]
 	private WeaponHandler weaponHandler;
 
@@ -29,7 +30,7 @@ public sealed class Player : MonoBehaviour
 	private void Start()
 	{
 		weaponHandler.BatteryHandler = BatteryComponent.BatteryHandler;
-		weaponHandler.Equip(weapon);
+		weaponHandler.Equip(weaponData.Weapon);
 	}
 
 	private static readonly Quaternion inputRotation = Quaternion.AngleAxis(45, Vector3.up);
