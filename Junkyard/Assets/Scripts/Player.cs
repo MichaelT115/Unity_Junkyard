@@ -4,19 +4,18 @@ using UnityEngine.SceneManagement;
 public sealed class Player : MonoBehaviour
 {
     private new Rigidbody rigidbody;
-    private BatteryComponent batteryComponent;
+	private BatteryComponent batteryComponent;
 	private HealthComponent healthComponent;
+	[SerializeField]
+	private Weapon weapon;
+	[SerializeField]
+	private WeaponHandler weaponHandler;
 
-    public float speed = 1;
+	public float speed = 1;
     public Vector3 moveDirection;
 
 	[SerializeField]
 	private Transform aimPositionMarker;
-	[SerializeField]
-	private Transform shootTransform;
-
-	[SerializeField]
-	private Weapon weapon;
 
 	private void Awake()
 	{
@@ -28,9 +27,10 @@ public sealed class Player : MonoBehaviour
 	}
 
 	private void Start()
-    {
-		weapon.Equip(this, shootTransform);
-    }
+	{
+		weaponHandler.BatteryHandler = BatteryComponent.BatteryHandler;
+		weaponHandler.Equip(weapon);
+	}
 
 	private static readonly Quaternion inputRotation = Quaternion.AngleAxis(45, Vector3.up);
 
@@ -51,15 +51,15 @@ public sealed class Player : MonoBehaviour
 			Kill();
 		}
 
-		weapon.Update(Time.deltaTime);
+		weaponHandler.Update(Time.deltaTime);
 
 		if (ShouldShoot)
 		{
-			weapon.Activate();
+			weaponHandler.Activate();
 		} 
 		else
 		{
-			weapon.Deactivate();
+			weaponHandler.Deactivate();
 		}
 
 		aimPositionMarker.position = AimPosition;
@@ -80,7 +80,7 @@ public sealed class Player : MonoBehaviour
 		: rigidbody.position;
 
 	private Ray PlayerMouseRay => Camera.main.ScreenPointToRay(Input.mousePosition);
-	private Plane WeaponPlane => new Plane(Vector3.up, -ShootTransform.position.y);
+	private Plane WeaponPlane => new Plane(Vector3.up, -weaponHandler.Position.y);
 
 	private void Kill()
 	{
@@ -99,14 +99,13 @@ public sealed class Player : MonoBehaviour
 	{
 		get
 		{
-			Vector3 startPosition = new Vector3(transform.position.x, ShootTransform.position.y, transform.position.z);
+			Vector3 startPosition = new Vector3(transform.position.x, weaponHandler.Position.y, transform.position.z);
 
 			return (AimPosition - startPosition).normalized;
 		}
 	}
 
-	public Transform ShootTransform => shootTransform;
-
 	public HealthComponent HealthComponent => healthComponent;
 	public BatteryComponent BatteryComponent => batteryComponent;
+	public WeaponHandler WeaponHandler => weaponHandler;
 }

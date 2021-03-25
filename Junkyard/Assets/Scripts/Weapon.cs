@@ -5,11 +5,7 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class Weapon
 {
-	private Player holder;
-	private Transform shootTransform;
-
-	public Player Holder => holder;
-	public Transform ShootPosition => shootTransform;
+	private WeaponHandler owner;
 
 	[SerializeField]
 	private LineRenderer lineRendererPrefab;
@@ -22,10 +18,9 @@ public class Weapon
 	private ParticleSystem impactEffect;
 	private ParticleSystem fireEffect;
 
-	public void Equip(Player holder, Transform shootTransform)
+	public void Equip(WeaponHandler owner)
 	{
-		this.holder = holder;
-		this.shootTransform = shootTransform;
+		this.owner = owner;
 
 		lineRenderer = Object.Instantiate(lineRendererPrefab);
 		impactEffect = Object.Instantiate(impactEffectPrefab);
@@ -56,11 +51,11 @@ public class Weapon
 
 	private void Fire()
 	{
-		PlayFireEffect();
+		PlayFireEffect(owner.Position, owner.Direction);
 
-		holder.BatteryComponent.Drain(1);
+		owner.DrainBattery(1);
 
-		Ray hitRay = new Ray(shootTransform.position, shootTransform.forward);
+		Ray hitRay = new Ray(owner.Position, owner.Direction);
 		if (Physics.Raycast(hitRay, out RaycastHit hitInfo, 1000))
 		{
 			if (hitInfo.rigidbody)
@@ -72,16 +67,16 @@ public class Weapon
 				}
 				else
 				{
-					hitInfo.rigidbody.AddForceAtPosition(shootTransform.forward * 100, hitInfo.point);
+					hitInfo.rigidbody.AddForceAtPosition(owner.Direction * 100, hitInfo.point);
 				}
 			}
 
-			EnableGraphic(shootTransform.position, hitInfo.point);
+			EnableGraphic(owner.Position, hitInfo.point);
 			PlayImpactEffect(hitInfo.point, hitInfo.normal);
 		}
 		else
 		{
-			EnableGraphic(shootTransform.position, hitRay.GetPoint(1000));
+			EnableGraphic(owner.Position, hitRay.GetPoint(1000));
 		}
 	}
 
@@ -92,10 +87,10 @@ public class Weapon
 		impactEffect.Play(true);
 	}
 
-	private void PlayFireEffect()
+	private void PlayFireEffect(Vector3 position, Vector3 direction)
 	{
-		fireEffect.transform.position = shootTransform.position;
-		fireEffect.transform.forward = shootTransform.forward;
+		fireEffect.transform.position = position;
+		fireEffect.transform.forward = direction;
 		fireEffect.Play(true);
 	}
 
@@ -108,4 +103,6 @@ public class Weapon
 		startColor.a = 1;
 		lineRenderer.startColor = startColor;
 	}
+
+	public WeaponHandler Owner => owner;
 }
