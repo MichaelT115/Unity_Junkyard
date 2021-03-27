@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Weapons;
 
 public sealed class Player : MonoBehaviour
 {
     private new Rigidbody rigidbody;
 	private BatteryComponent batteryComponent;
 	private HealthComponent healthComponent;
+	private WeaponHandlerComponent weaponHandlerComponent;
+
 	[SerializeField]
-	private WeaponData weaponData;
-	[SerializeField]
-	private WeaponHandler weaponHandler;
+	private bool isShooting = false;
 
 	public float speed = 1;
     public Vector3 moveDirection;
@@ -25,12 +24,7 @@ public sealed class Player : MonoBehaviour
 
 		batteryComponent = GetComponent<BatteryComponent>();
 		healthComponent = GetComponent<HealthComponent>();
-	}
-
-	private void Start()
-	{
-		weaponHandler.BatteryHandler = BatteryComponent.BatteryHandler;
-		weaponHandler.Equip(weaponData.Weapon);
+		weaponHandlerComponent = GetComponent<WeaponHandlerComponent>();
 	}
 
 	private static readonly Quaternion inputRotation = Quaternion.AngleAxis(45, Vector3.up);
@@ -52,39 +46,27 @@ public sealed class Player : MonoBehaviour
 			Kill();
 		}
 
-		weaponHandler.Update(Time.deltaTime);
 
-		if (ShouldShoot)
+		if (ShouldActivateWeapon)
 		{
-			weaponHandler.Activate();
-		} 
-		else
+			weaponHandlerComponent.Activate();
+			isShooting = true;
+		}
+		else if (ShouldDeactivateWeapon)
 		{
-			weaponHandler.Deactivate();
+			weaponHandlerComponent.Deactivate();
+			isShooting = false;
 		}
 
 		aimPositionMarker.position = AimPosition;
 	}
 
-	private static bool ShouldShoot
-	{
-		get
-		{
-			const int LEFT_MOUSE_BUTTON = 0;
-			return Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON);
-		}
-	}
-
-	public Vector3 AimPosition =>
-		WeaponPlane.Raycast(PlayerMouseRay, out float distance)
-		? PlayerMouseRay.GetPoint(distance)
-		: rigidbody.position;
-
-	private Ray PlayerMouseRay => Camera.main.ScreenPointToRay(Input.mousePosition);
-	private Plane WeaponPlane => new Plane(Vector3.up, -weaponHandler.Position.y);
-
 	private void Kill()
 	{
+		weaponHandlerComponent.Deactivate();
+
+		aimPositionMarker.gameObject.SetActive(false);
+
 		rigidbody.constraints = RigidbodyConstraints.None;
 		rigidbody.AddForce(Random.onUnitSphere);
 		enabled = false;
@@ -100,13 +82,20 @@ public sealed class Player : MonoBehaviour
 	{
 		get
 		{
-			Vector3 startPosition = new Vector3(transform.position.x, weaponHandler.Position.y, transform.position.z);
-
+			Vector3 startPosition = new Vector3(transform.position.x, weaponHandlerComponent.WeaponHeight, transform.position.z);
 			return (AimPosition - startPosition).normalized;
 		}
 	}
+	private bool ShouldActivateWeapon => Input.GetMouseButton(0) && !isShooting;
+	public bool IsShooting => isShooting;
+	private bool ShouldDeactivateWeapon => !Input.GetMouseButton(0) && isShooting;
+	public Vector3 AimPosition =>
+		WeaponPlane.Raycast(PlayerMouseRay, out float distance)
+		? PlayerMouseRay.GetPoint(distance)
+		: rigidbody.position;
+	private Ray PlayerMouseRay => Camera.main.ScreenPointToRay(Input.mousePosition);
+	private Plane WeaponPlane => new Plane(Vector3.up, -weaponHandlerComponent.WeaponHeight);
 
 	public HealthComponent HealthComponent => healthComponent;
 	public BatteryComponent BatteryComponent => batteryComponent;
-	public WeaponHandler WeaponHandler => weaponHandler;
 }

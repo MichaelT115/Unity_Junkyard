@@ -27,11 +27,6 @@ public sealed class BatteryComponent : MonoBehaviour
 	[SerializeField]
 	private bool isOvercharged;
 
-	private void Update()
-	{
-		batteryHandler.ResetCounts();
-	}
-
 	private void LateUpdate()
 	{ 
 		hasChargedThisFrame = Battery.Power > batteryPrevious.Power;

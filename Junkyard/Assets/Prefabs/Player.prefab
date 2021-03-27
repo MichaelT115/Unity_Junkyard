@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 732910745611735455}
   - component: {fileID: 4812546724952090439}
   - component: {fileID: 732910745611735440}
+  - component: {fileID: 7271678160817884133}
   - component: {fileID: 732910745611735441}
   - component: {fileID: 732910745611735453}
   - component: {fileID: 732910745611735452}
@@ -133,17 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a0799e0c95015418d502e94dcd7a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isShooting: 0
   speed: 10
   moveDirection: {x: 0, y: 0, z: 0}
   aimPositionMarker: {fileID: 881374607}
-  shootTransform: {fileID: 469375897959265266}
-  weapon:
-    lineRendererPrefab: {fileID: 3192867924108436658, guid: c975c50d97e2ecb4482dd15b7a9f5df8,
-      type: 3}
-    impactEffectPrefab: {fileID: 4576516608443189829, guid: 2f990da255d2e384c9a46c003201f1c7,
-      type: 3}
-    fireEffectPrefab: {fileID: 807433649432821179, guid: 4305dabe4a3dfb7439914e4dfa10996e,
-      type: 3}
 --- !u!114 &4812546724952090439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +172,29 @@ MonoBehaviour:
   hasDrainedThisFrame: 0
   isZero: 0
   isMax: 0
+  isOvercharged: 0
+--- !u!114 &7271678160817884133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732910745611735442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aadc429fdb138f46ab7cb58f5d0cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponData: {fileID: 11400000, guid: d1f25e17d4882b3489f42bcaf5856441, type: 2}
+  weaponHandler:
+    weaponTransform: {fileID: 0}
+    weapon:
+      id: 0
+  weaponTransform: {fileID: 469375897959265266}
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!114 &732910745611735441
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,31 +2,28 @@
 using UnityEngine;
 
 [Serializable]
-public sealed class BatteryHandler
+public sealed class BatteryHandler : IBatteryHandler
 {
 	[SerializeField]
 	private Battery battery;
-
-	private int powerInceases = 0;
-	private int powerDecreases = 0;
-	private float totalIncrease = 0;
-	private float totalDecrease = 0;
-
 	public ref readonly Battery Battery => ref battery;
 
 	public BatteryHandler(Battery battery = new Battery()) => this.battery = battery;
 
-	public void ResetCounts()
-	{
-		powerInceases = 0;
-		powerDecreases = 0;
-	}
-
 	public void SetBattery(in Battery battery) => this.battery = battery;
-
 	public void Drain(float power) => battery = battery.WithPower(battery.Power - power);
-
 	public void Charge(float power) => battery = battery.WithPower(battery.Power + power);
-
 	public void ClampAtMax() => battery = battery.WithPower(Math.Min(battery.Power, battery.MaxPower));
+}
+
+[Serializable]
+public sealed class BatteryHandlerNull : IBatteryHandler
+{
+	private static Battery battery = new Battery();
+	public ref readonly Battery Battery => ref battery;
+
+	public void SetBattery(in Battery battery) { }
+	public void Drain(float power) { }
+	public void Charge(float power) { }
+	public void ClampAtMax() { }
 }

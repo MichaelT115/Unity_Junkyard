@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Weapons
+namespace Weapons.Data
 {
-	public abstract class WeaponData : ScriptableObject
+	public abstract class WeaponSO : ScriptableObject, IWeaponData
 	{
 		protected const string WEAPON_PREFIX = "Weapon_";
 		protected const string WEAPON_MENU_FOLDER = "Weapon";

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Weapons
+namespace Weapons.Data
 {
 	[CreateAssetMenu(fileName = WEAPON_PREFIX + "ElecticProd", menuName = WEAPON_MENU_FOLDER + "/Electric Prod")]
-	public sealed class WeaponDataElecticProd : WeaponDataTemplate<WeaponElecticProd> { }
+	public sealed class WeaponDataElecticProd : WeaponSOTemplate<WeaponElecticProd> { }
 }
