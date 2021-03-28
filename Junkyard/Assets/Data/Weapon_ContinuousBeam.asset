@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0834c1dcaf2dea242810e651e2788efc, type: 3}
+  m_Name: Weapon_ContinuousBeam
+  m_EditorClassIdentifier: 
+  weapon:
+    beam:
+      hitRigidBodies: []
+      hitPoints: []
+      hitNormals: []
+    beamDrawer:
+      lineRendererPrefab: {fileID: 3192867924108436658, guid: c975c50d97e2ecb4482dd15b7a9f5df8,
+        type: 3}
+      lineRenderer: {fileID: 0}
+      impactEffectPrefab: {fileID: 4576516608443189829, guid: b2d5bd35e24b07642b8fa8ffc2d02409,
+        type: 3}
+      impactEffects: []
