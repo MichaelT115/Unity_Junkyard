@@ -7,9 +7,10 @@ public sealed class WeaponHandlerComponent : MonoBehaviour
 	private WeaponSO weaponData;
 	[SerializeField]
 	private WeaponHandler weaponHandler;
+	[SerializeField]
+	private Inventory inventory;
 
 	private BatteryComponent batteryComponent;
-	private HealthComponent healthComponent;
 
 	[SerializeField]
 	private Transform weaponTransform;
@@ -17,12 +18,11 @@ public sealed class WeaponHandlerComponent : MonoBehaviour
 	private void Awake()
 	{
 		batteryComponent = GetComponent<BatteryComponent>();
-		healthComponent = GetComponent<HealthComponent>();
+		weaponHandler = new WeaponHandler(batteryComponent.BatteryHandler, inventory);
 	}
 
 	private void Start()
 	{
-		weaponHandler.BatteryHandler = batteryComponent.BatteryHandler;
 		weaponHandler.Equip(weaponData.Weapon);
 	}
 

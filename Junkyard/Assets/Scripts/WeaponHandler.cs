@@ -5,8 +5,8 @@ using Weapons;
 [Serializable]
 public sealed class WeaponHandler
 {
-	public Inventory Inventory { get; private set ; }
-	public IBatteryHandler BatteryHandler { get;  set; }
+	public IInventory Inventory { get; private set ; }
+	public IBatteryHandler BatteryHandler { get; private set; }
 	public Vector3 Position { get; set; }
 	public Vector3 Direction { get; set; }
 	public Vector3 Target { get; set; }
@@ -14,10 +14,10 @@ public sealed class WeaponHandler
 	[SerializeReference]
 	private IWeapon weapon;
 
-	public WeaponHandler(IBatteryHandler batteryHandler = null, Inventory inventory = null)
+	public WeaponHandler(IBatteryHandler batteryHandler = null, IInventory inventory = null)
 	{
 		BatteryHandler = batteryHandler ?? new BatteryHandlerNull();
-		Inventory = inventory;
+		Inventory = inventory ?? new InventoryInfinit();
 	}
 
 	public void Equip(IWeapon weapon)
@@ -33,4 +33,8 @@ public sealed class WeaponHandler
 	public void Update(float deltaTime) => weapon.Update(deltaTime);
 
 	public void DrainBattery(float power) => BatteryHandler.Drain(power);
+
+	public void UseAmmo(int amount) => Inventory.UseAmmo(amount);
+
+	public bool HasAmmo(int amount) => Inventory.HasAmmo(amount);
 }
