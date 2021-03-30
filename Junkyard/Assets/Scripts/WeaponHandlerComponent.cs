@@ -30,8 +30,16 @@ public sealed class WeaponHandlerComponent : MonoBehaviour
 	{
 		weaponHandler.Position = weaponTransform.position;
 		weaponHandler.Direction = weaponTransform.forward;
+		weaponHandler.Target = AimPosition;
 		weaponHandler.Update(Time.deltaTime);
 	}
+
+	private Ray PlayerMouseRay => Camera.main.ScreenPointToRay(Input.mousePosition);
+	private Plane WeaponPlane => new Plane(Vector3.up, -WeaponHeight);
+	public Vector3 AimPosition =>
+		WeaponPlane.Raycast(PlayerMouseRay, out float distance)
+		? PlayerMouseRay.GetPoint(distance)
+		: transform.position;
 
 	public void Activate() => weaponHandler.Activate();
 	public void Deactivate() => weaponHandler.Deactivate();

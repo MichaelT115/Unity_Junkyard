@@ -9,6 +9,7 @@ public sealed class WeaponHandler
 	public IBatteryHandler BatteryHandler { get;  set; }
 	public Vector3 Position { get; set; }
 	public Vector3 Direction { get; set; }
+	public Vector3 Target { get; set; }
 
 	[SerializeReference]
 	private IWeapon weapon;

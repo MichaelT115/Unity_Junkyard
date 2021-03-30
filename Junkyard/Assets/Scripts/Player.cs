@@ -39,6 +39,11 @@ public sealed class Player : MonoBehaviour
 			SceneManager.LoadScene("Level", LoadSceneMode.Additive);
 		}
 
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Debug.Break();
+		}
+
 		moveDirection = InputDirection;
 
 		if (batteryComponent.IsZero || healthComponent.IsZeroOrBelow)

@@ -10,6 +10,7 @@ namespace Weapons
 		private WeaponHandler owner;
 
 		private bool isBeamActive;
+		private readonly BeamBuilder beamGenerator = new BeamBuilder();
 		[SerializeField]
 		private Beam beam;
 		[SerializeField]
@@ -18,7 +19,6 @@ namespace Weapons
 		public void Equip(WeaponHandler owner)
 		{
 			this.owner = owner;
-			beam = new Beam() { MaxHits = 3 };
 			beamDrawer.Init();
 		}
 
@@ -38,13 +38,13 @@ namespace Weapons
 		{
 			if (isBeamActive)
 			{
-				beam.Fire(owner.Position, Target);
+				beam =beamGenerator.BuildBeam(owner.Position, Target, 3);
 
-				foreach (var rigidbody in beam.HitRigidBodies)
+				for (int i = 0; i < beam.HitRigidbodies.Length; ++i)
 				{
-					if (rigidbody.CompareTag("Enemy"))
+					if (beam.HitRigidbodies[i].CompareTag("Enemy"))
 					{
-						var health = rigidbody.GetComponent<HealthComponent>();
+						var health = beam.HitRigidbodies[i].GetComponent<HealthComponent>();
 						health.Damage(5);
 					}
 				}
@@ -53,7 +53,15 @@ namespace Weapons
 			}
 		}
 
-		private Vector3 Target => owner.Position + (owner.Direction * 10);
+		private Vector3 Target
+		{
+			get
+			{
+				var distance = Math.Min(Vector3.Distance(owner.Position, owner.Target), 8);
+				var direction = (owner.Target - owner.Position).normalized;
+				return owner.Position + direction * distance;
+			}
+		}
 
 		public WeaponHandler Owner => owner;
 	}

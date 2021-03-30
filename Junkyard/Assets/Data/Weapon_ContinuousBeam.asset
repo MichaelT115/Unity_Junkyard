@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon:
     beam:
-      hitRigidBodies: []
+      origin: {x: 0, y: 0, z: 0}
+      target: {x: 0, y: 0, z: 0}
+      endPoint: {x: 0, y: 0, z: 0}
+      hitRigidbodies: []
       hitPoints: []
       hitNormals: []
+      distance: 0
+      distanceToTarget: 0
+      direction: {x: 0, y: 0, z: 0}
     beamDrawer:
-      lineRendererPrefab: {fileID: 3192867924108436658, guid: c975c50d97e2ecb4482dd15b7a9f5df8,
+      lineRendererPrefab: {fileID: 3192867924108436658, guid: 418bf54430b59a54a9673ae93be9be85,
         type: 3}
       lineRenderer: {fileID: 0}
       impactEffectPrefab: {fileID: 4576516608443189829, guid: b2d5bd35e24b07642b8fa8ffc2d02409,
