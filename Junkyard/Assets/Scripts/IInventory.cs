@@ -1,6 +1,11 @@
-﻿public interface IInventory
+﻿
+public interface IInventory
 {
-	void AddAmmo(int amount);
-	bool HasAmmo(int amount);
-	void UseAmmo(int amount);
+	void AddMinigunAmmo(int amount);
+	bool HasMinigunAmmo(int amount);
+	void UseMinigunAmmo(int amount);
+
+	void AddShotgunAmmo(int amount);
+	bool HasShotgunAmmo(int amount);
+	void UseShotgunAmmo(int amount);
 }

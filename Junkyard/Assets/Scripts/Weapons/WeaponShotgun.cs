@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace Weapons
 {
 	[Serializable]
-	public sealed class WeaponMinigun : IWeapon
+	public sealed class WeaponShotgun : IWeapon
 	{
 		private const float TIME_BETWEEN_SHOTS = 0.02f;
 
@@ -28,6 +28,8 @@ namespace Weapons
 
 		[SerializeField]
 		private bool isActive = false;
+		[SerializeField]
+		private bool hasFired = false;
 
 		private float timeOfNextShot = 0;
 		private float timeActive = 0;
@@ -53,21 +55,22 @@ namespace Weapons
 		public void Deactivate()
 		{
 			isActive = false;
+			hasFired = false;
 		}
 
 		public void Update(float deltaTime)
 		{
-			if (isActive)
+			if (CanFire)
 			{
-				timeActive += deltaTime;
-
-				while (timeActive > timeOfNextShot && owner.HasMinigunAmmo(1))
-				{
-					Fire();
-					timeOfNextShot += TIME_BETWEEN_SHOTS;
-				}
+				Fire();
+				timeOfNextShot = Time.time + TIME_BETWEEN_SHOTS;
 			}
 
+			UpdateGraphics(deltaTime);
+		}
+
+		private void UpdateGraphics(float deltaTime)
+		{
 			Vector3[] positions = new Vector3[2];
 			for (int i = lineRenderers.Count - 1; 0 <= i; --i)
 			{
@@ -91,36 +94,56 @@ namespace Weapons
 			}
 		}
 
+		private bool CanFire => isActive && !hasFired && Time.time > timeOfNextShot && owner.HasShotgunAmmo(1);
+
 		private void Fire()
 		{
+
 			PlayFireEffect(owner.Position, owner.Direction);
+			UseAmmo();
 
-			owner.UseMinigunAmmo(1);
-
-			Ray hitRay = new Ray(owner.Position, RandomAngleOffset * owner.Direction);
-			if (Physics.Raycast(hitRay, out RaycastHit hitInfo, 1000))
+			for (int i = 0; i < 8; ++i)
 			{
-				if (hitInfo.rigidbody)
+				var hitRay = new Ray(owner.Position, RandomAngleOffset * owner.Direction);
+
+				var hasHit = Physics.Raycast(hitRay, out RaycastHit hitInfo, 1000);
+
+				if (hasHit)
 				{
-					if (hitInfo.rigidbody.CompareTag("Enemy"))
-					{
-						var health = hitInfo.rigidbody.GetComponent<HealthComponent>();
-						health.Damage(maxAngleOffset);
-					}
-					else
-					{
-						hitInfo.rigidbody.AddForceAtPosition(hitRay.direction * 100, hitInfo.point);
-					}
+					HandleHit(hitRay, hitInfo);
 				}
 
-				EnableGraphic(owner.Position, hitInfo.point);
-				PlayImpactEffect(hitInfo.point, hitInfo.normal);
+				PlayFireEffect(owner.Position, owner.Direction);
+				if (hasHit)
+				{
+					PlayImpactEffect(hitInfo.point, hitInfo.normal);
+				}
+
+				EnableGraphic(owner.Position, hasHit ? hitInfo.point : hitRay.GetPoint(1000));
+			}
+
+			hasFired = true;
+		}
+
+		private void HandleHit(in Ray hitRay, in RaycastHit hitInfo)
+		{
+			if (!hitInfo.rigidbody)
+			{
+				return;
+			}
+
+			if (hitInfo.rigidbody.CompareTag("Enemy"))
+			{
+				var health = hitInfo.rigidbody.GetComponent<HealthComponent>();
+				health.Damage(1);
 			}
 			else
 			{
-				EnableGraphic(owner.Position, hitRay.GetPoint(1000));
+				hitInfo.rigidbody.AddForceAtPosition(hitRay.direction * 100, hitInfo.point);
 			}
 		}
+
+		private void UseAmmo() => owner.UseShotgunAmmo(1);
 
 		private Quaternion RandomAngleOffset => Quaternion
 			.Euler(

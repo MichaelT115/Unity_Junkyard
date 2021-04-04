@@ -5,9 +5,17 @@ using UnityEngine;
 public sealed class Inventory : IInventory
 {
 	[SerializeField]
-	private int ammo = 5000;
+	private int minigunAmmo = 5000;
 
-	public void AddAmmo(int amount) => ammo += amount;
-	public void UseAmmo(int amount) => ammo -= amount;
-	public bool HasAmmo(int amount) => amount <= ammo;
+	[SerializeField]
+	private int shotgunAmmo = 20;
+
+	public void AddMinigunAmmo(int amount) => minigunAmmo += amount;
+	public void UseMinigunAmmo(int amount) => minigunAmmo -= amount;
+	public bool HasMinigunAmmo(int amount) => amount <= minigunAmmo;
+
+	public void AddShotgunAmmo(int amount) => shotgunAmmo += amount;
+	public bool HasShotgunAmmo(int amount) => amount <= shotgunAmmo;
+	public void UseShotgunAmmo(int amount) => shotgunAmmo -= amount;
+	public int ShotgunAmmoCount => shotgunAmmo;
 }

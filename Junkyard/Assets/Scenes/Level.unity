@@ -25377,6 +25377,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6683742760955949176, guid: 996bfef522e12ce49abdd739a6ef2917, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 996bfef522e12ce49abdd739a6ef2917, type: 3}
+--- !u!114 &1637624521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7271678160817884133, guid: dd9fb3d61067e8747a6e14251826ada1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1929912725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aadc429fdb138f46ab7cb58f5d0cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1643790549
 GameObject:
   m_ObjectHideFlags: 0
@@ -29827,7 +29839,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weaponData
       value: 
-      objectReference: {fileID: 11400000, guid: 36187a9888d2f6f40b7ae69803b36daa,
+      objectReference: {fileID: 11400000, guid: 2d05be523a741ac4a91c442685c78fa7,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd9fb3d61067e8747a6e14251826ada1, type: 3}
@@ -33838,6 +33850,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3154440281661690266, guid: d56141634b01fb34980b0a4145a96d75,
+        type: 3}
+      propertyPath: weaponHandlerComponent
+      value: 
+      objectReference: {fileID: 1637624521}
     - target: {fileID: 4035183055593145474, guid: d56141634b01fb34980b0a4145a96d75,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

@@ -18,7 +18,7 @@ public sealed class WeaponHandlerComponent : MonoBehaviour
 	private void Awake()
 	{
 		batteryComponent = GetComponent<BatteryComponent>();
-		weaponHandler = new WeaponHandler(batteryComponent.BatteryHandler, inventory);
+		weaponHandler = new WeaponHandler(batteryComponent.BatteryHandler, Inventory);
 	}
 
 	private void Start()
@@ -45,4 +45,6 @@ public sealed class WeaponHandlerComponent : MonoBehaviour
 	public void Deactivate() => weaponHandler.Deactivate();
 
 	public float WeaponHeight => weaponHandler.Position.y;
+
+	public Inventory Inventory => inventory;
 }

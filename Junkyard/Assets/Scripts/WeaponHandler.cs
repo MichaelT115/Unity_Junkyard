@@ -34,7 +34,9 @@ public sealed class WeaponHandler
 
 	public void DrainBattery(float power) => BatteryHandler.Drain(power);
 
-	public void UseAmmo(int amount) => Inventory.UseAmmo(amount);
+	public bool HasMinigunAmmo(int amount) => Inventory.HasMinigunAmmo(amount);
+	public void UseMinigunAmmo(int amount) => Inventory.UseMinigunAmmo(amount);
 
-	public bool HasAmmo(int amount) => Inventory.HasAmmo(amount);
+	public bool HasShotgunAmmo(int amount) => Inventory.HasShotgunAmmo(amount);
+	public void UseShotgunAmmo(int amount) => Inventory.UseShotgunAmmo(amount);
 }
